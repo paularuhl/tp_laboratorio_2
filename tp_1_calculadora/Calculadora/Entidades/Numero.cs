@@ -34,5 +34,22 @@ namespace Entidades
             double.TryParse(strNumero, out numero);
             return numero;
         }
+
+        public string BinarioDecimal(string binario)
+        {
+            return "";
+        }
+
+        public string DecimalBinario(double numero)
+        {
+            return "";
+        }
+
+        public string DecimalBinario(string numero)
+        {
+            return "";
+        }
+
+
     }
 }
