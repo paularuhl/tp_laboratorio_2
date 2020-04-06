@@ -7,7 +7,7 @@ namespace Entidades
     {
         public static double Operar(Numero num1, Numero num2, string operador)
         {
-            double resultado;
+            double resultado = 0;
             switch (ValidarOperador(operador))
             {
                 case "+":
