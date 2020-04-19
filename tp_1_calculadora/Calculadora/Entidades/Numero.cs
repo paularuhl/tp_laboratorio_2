@@ -35,11 +35,15 @@ namespace Entidades
             return numero;
         }
 
-        public string BinarioDecimal(string binario)
+        public static string BinarioDecimal(string binario)
         {
             double numero = 0;
             int largoArrayBinario = binario.Length;
 
+            foreach(char a in binario)
+            {
+                if (a != '0' && a != '1') return "Valor inválido";
+            }
 
             for (int i = 0; i < largoArrayBinario; i++)
             {
@@ -49,7 +53,7 @@ namespace Entidades
             return numero.ToString();
         }
 
-        public string DecimalBinario(double numero)
+        public static string DecimalBinario(double numero)
         {
             string numeroBinario = String.Empty;
             numero = (int)numero;
@@ -67,7 +71,7 @@ namespace Entidades
             return new string(charArray);
         }
 
-        public string DecimalBinario(string numero)
+        public static string DecimalBinario(string numero)
         {
             double numeroDecimal;
             if (double.TryParse(numero, out numeroDecimal))
@@ -76,7 +80,7 @@ namespace Entidades
             }
             else
             {
-                return "Valor Inválido";
+                return "Valor inválido";
             }
         }
 
