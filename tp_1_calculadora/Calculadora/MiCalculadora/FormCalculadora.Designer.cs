@@ -122,12 +122,14 @@
             // 
             // lblResultado
             // 
-            this.lblResultado.AutoSize = true;
+            this.lblResultado.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.lblResultado.Location = new System.Drawing.Point(404, 17);
+            this.lblResultado.Location = new System.Drawing.Point(6, 17);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(0, 44);
+            this.lblResultado.Size = new System.Drawing.Size(519, 44);
             this.lblResultado.TabIndex = 9;
+            this.lblResultado.Text = "lblResult";
+            this.lblResultado.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // FormCalculadora
             // 
@@ -147,8 +149,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormCalculadora";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora de Paula Ruhl del curso 2° C";
-            this.Load += new System.EventHandler(this.FormCalculadora_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

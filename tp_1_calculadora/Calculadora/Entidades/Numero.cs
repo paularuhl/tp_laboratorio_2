@@ -35,6 +35,11 @@ namespace Entidades
             return numero;
         }
 
+        /// <summary>
+        /// Este método convierte un numero binario a uno decimal.
+        /// </summary>
+        /// <param name="binario">Número binario, en tipo string</param>
+        /// <returns>Devuelve el resultado si es posible convertir, caso contrario devuelve el mensaje "Valor inválido"</returns>
         public static string BinarioDecimal(string binario)
         {
             double numero = 0;
@@ -53,6 +58,11 @@ namespace Entidades
             return numero.ToString();
         }
 
+        /// <summary>
+        /// Este método convierte un numero decimal a uno binario
+        /// </summary>
+        /// <param name="entero">Número decimal, en tipo double</param>
+        /// <returns>Devuelve el resultado de la conversión.</returns>
         public static string DecimalBinario(double numero)
         {
             string numeroBinario = String.Empty;
@@ -60,7 +70,7 @@ namespace Entidades
             do
             {
                 numeroBinario = numeroBinario + (numero % 2);
-                numero = numero / 2;
+                numero = (int)numero / 2;
                 if (numero < 2) numeroBinario = numeroBinario + numero;
 
             } while (numero > 1);

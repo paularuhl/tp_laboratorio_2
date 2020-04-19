@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MiCalculadora.Properties
+namespace MiCalculador.Properties
 {
 
 
