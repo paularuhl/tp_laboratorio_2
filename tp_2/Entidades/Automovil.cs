@@ -8,13 +8,23 @@ using System.Drawing;
 
 namespace Entidades
 {
+    /// <summary>
+    /// Clase Automóvil, derivada de Vehículo
+    /// </summary>
     public class Automovil : Vehiculo
     {
+        /// <summary>
+        /// Enumerado de tipos posibles de Automovil
+        /// </summary>
         public enum ETipo { Monovolumen, Sedan }
+        /// <summary>
+        /// Atributo que indica el tipo de automovil del objeto.
+        /// </summary>
         ETipo tipo;
 
         /// <summary>
-        /// Por defecto, TIPO será Monovolumen
+        /// Constructor publico de Automovil, donde no recibe un Tipo. Por defecto, TIPO será Monovolumen.
+        /// Llama a una sobrecarga del constructor que sí recibe parametro Tipo.
         /// </summary>
         /// <param name="marca"></param>
         /// <param name="chasis"></param>
@@ -25,7 +35,7 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Se asigna el tipo y se llama al constructor de la clase base
+        ///  Constructor publico de Automovil, donde se asigna el tipo y se llama al constructor de la clase base
         /// </summary>
         /// <param name="marca"></param>
         /// <param name="chasis"></param>
@@ -38,6 +48,7 @@ namespace Entidades
         }
 
         /// <summary>
+        /// Propiedad que retorna el tamaño de las camionetas,
         /// Los automoviles son medianos
         /// </summary>
         protected override ETamanio Tamanio
@@ -48,10 +59,10 @@ namespace Entidades
             }
         }
 
-        /// <summary>
-        /// Muestra 
+         /// <summary>
+        /// Publica todos los datos del automóvil en formato string
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Datos del automóvil</returns>
         public override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();

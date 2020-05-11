@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Entidades
 {
     /// <summary>
-    /// La clase Vehiculo no deberá permitir que se instancien elementos de este tipo.
+    /// Clase Abstracta Vehículo
     /// </summary>
     public abstract class Vehiculo
     {
@@ -16,10 +16,16 @@ namespace Entidades
         private ConsoleColor color;
 
         /// <summary>
-        /// ReadOnly: Retornará el tamaño
+        /// Propiedad abstracta que en las clases derivadas retornará el tamaño correspondienete del vehículo
         /// </summary>
         protected abstract ETamanio Tamanio { get; }
 
+        /// <summary>
+        /// Constructor que asigna chasis, marca y color al vehiculo.
+        /// </summary>
+        /// <param name="chasis"></param>
+        /// <param name="marca"></param>
+        /// <param name="color"></param>
         public Vehiculo(string chasis, EMarca marca, ConsoleColor color)
         {
             this.chasis = chasis;
@@ -28,7 +34,7 @@ namespace Entidades
         }
 
         /// <summary>
-        /// Publica todos los datos del Vehiculo.
+        /// Publica todos los datos del Vehiculo en formato string
         /// </summary>
         /// <returns>devuelve los datos del vehículo</returns>
         public virtual string Mostrar()
@@ -73,10 +79,17 @@ namespace Entidades
             return !(v1 == v2);
         }
 
+        /// <summary>
+        /// Enumerado de marcas disponibles para los vehículos
+        /// </summary>
         public enum EMarca
         {
             Chevrolet, Ford, Renault, Toyota, BMW, Honda
         }
+
+        /// <summary>
+        /// Enumerado de tamaños disponibles para los vehículos
+        /// </summary>
         public enum ETamanio
         {
             Chico, Mediano, Grande

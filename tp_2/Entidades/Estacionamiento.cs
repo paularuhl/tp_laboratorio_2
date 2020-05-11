@@ -11,18 +11,36 @@ namespace Entidades
     /// </summary>
     public class Estacionamiento
     {
+        /// <summary>
+        /// Atributo que contendrá a la lista de vehículos del estacionamiento.
+        /// </summary>
         List<Vehiculo> vehiculos;
+        /// <summary>
+        /// Atributo que indicará el espacio disponible en el estacionamiento.
+        /// </summary>
         int espacioDisponible;
+
+        /// <summary>
+        /// Enumerado de tipos posibles de automóvil.
+        /// </summary>
         public enum ETipo
         {
             Moto, Automovil, Camioneta, Todos
         }
 
         #region "Constructores"
+        /// <summary>
+        /// Constructor privado que inicializa la lista de vehículos
+        /// </summary>
         private Estacionamiento()
         {
             this.vehiculos = new List<Vehiculo>();
         }
+        /// <summary>
+        /// Constructor público que inicializa espacio disponible con el pasado por parametro y luego llama al constructor 
+        /// privado sin parametros.
+        /// </summary>
+        /// <param name="espacioDisponible"></param>
         public Estacionamiento(int espacioDisponible) : this()
         {
             this.espacioDisponible = espacioDisponible;
@@ -31,7 +49,7 @@ namespace Entidades
 
         #region "Sobrecargas"
         /// <summary>
-        /// Muestro el estacionamiento y TODOS los vehículos
+        /// Override de ToString, que devuelve los datos del estacionamiento y TODOS los vehículos
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -80,7 +98,7 @@ namespace Entidades
 
         #region "Operadores"
         /// <summary>
-        /// Agregará un elemento a la lista
+        /// Agregará un elemento a la lista verificand si ya existe en ella y si hay espacio para hacerlo
         /// </summary>
         /// <param name="c">Objeto donde se agregará el elemento</param>
         /// <param name="p">Objeto a agregar</param>
@@ -100,7 +118,7 @@ namespace Entidades
             return c;
         }
         /// <summary>
-        /// Quitará un elemento de la lista
+        /// Quitará un elemento de la lista, verificando que esté en ella.
         /// </summary>
         /// <param name="c">Objeto donde se quitará el elemento</param>
         /// <param name="p">Objeto a quitar</param>
