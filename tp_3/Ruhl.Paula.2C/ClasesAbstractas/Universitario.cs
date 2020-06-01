@@ -26,18 +26,18 @@ namespace ClasesAbstractas
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.ToString());
-            sb.AppendFormat("LEGAJO NÚMERO: {0}", this.legajo);
+            sb.AppendFormat("\nLEGAJO NÚMERO: {0}\n", this.legajo);
             return sb.ToString();
         }
 
         public override bool Equals(object obj)
         {
-            return this == (Universitario)obj;
+            return this.GetType() == obj.GetType();
         }
 
         public static bool operator ==(Universitario pg1, Universitario pg2)
         {
-            return pg1.legajo == pg2.legajo || pg1.Dni == pg2.Dni;
+            return pg1.Equals(pg2) && (pg1.legajo == pg2.legajo || pg1.Dni == pg2.Dni);
         }
         public static bool operator !=(Universitario pg1, Universitario pg2)
         {

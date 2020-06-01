@@ -33,22 +33,22 @@ namespace ClasesInstanciables
 
         protected override string MostrarDatos()
         {
-            return this.ToString();
-        }
-
-        protected override string ParticiparEnClase()
-        {
-            return $"TOMA CLASEs DE {this.claseQueToma} ";
-        }
-
-        public override string ToString()
-        {
             StringBuilder sb = new StringBuilder();
             sb.Append(base.MostrarDatos());
 
             sb.AppendFormat("ESTADO DE CUENTA: {0}\n", this.estadoCuenta);
             sb.AppendFormat($"{this.ParticiparEnClase()}\n");
             return sb.ToString();
+        }
+
+        protected override string ParticiparEnClase()
+        {
+            return $"TOMA CLASES DE {this.claseQueToma} ";
+        }
+
+        public override string ToString()
+        {
+            return this.MostrarDatos();
         }
 
         public static bool operator ==(Alumno a, Universidad.EClases clase)

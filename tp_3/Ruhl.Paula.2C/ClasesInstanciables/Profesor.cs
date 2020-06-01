@@ -43,7 +43,12 @@ namespace ClasesInstanciables
 
         protected override string MostrarDatos()
         {
-            return this.ToString();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.MostrarDatos());
+
+            sb.AppendFormat($"{this.ParticiparEnClase()}\n");
+
+            return sb.ToString();
         }
 
         protected override string ParticiparEnClase()
@@ -58,12 +63,7 @@ namespace ClasesInstanciables
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarDatos());
-
-            sb.AppendFormat($"{this.ParticiparEnClase()}\n");
-            
-            return sb.ToString();
+            return this.MostrarDatos();
         }
 
         public static bool operator ==(Profesor i, Universidad.EClases clase)
