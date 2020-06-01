@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ClasesAbstractas
+namespace EntidadesAbstractas
 {
     public abstract class Persona
     {
@@ -51,18 +51,18 @@ namespace ClasesAbstractas
             }
             set
             {
-                try
-                {
+                //try
+                //{
                     this.dni = this.ValidarDni(nacionalidad, value);
-                }
-                catch (Excepciones.DniInvalidoException ex)
-                {
+                //}
+                //catch (Excepciones.DniInvalidoException ex)
+                //{
 
-                }
-                catch (Excepciones.NacionalidadInvalidaException ex)
-                {
+                //}
+                //catch (Excepciones.NacionalidadInvalidaException ex)
+                //{
 
-                }
+                //}
             }
         }
         public ENacionalidad Nacionalidad
@@ -87,11 +87,11 @@ namespace ClasesAbstractas
                 }
                 catch (Excepciones.DniInvalidoException ex)
                 {
-
+                    Console.WriteLine(ex.Message);
                 }
                 catch (Excepciones.NacionalidadInvalidaException ex)
                 {
-
+                    Console.WriteLine(ex.Message);
                 }
             }
         }
@@ -103,14 +103,21 @@ namespace ClasesAbstractas
 
         }
 
-        public Persona(string nombre, string apellido, ENacionalidad nacionalidad) { }
+        public Persona(string nombre, string apellido, EntidadesAbstractas.Persona.ENacionalidad nacionalidad) 
+        {
+            this.Nombre = nombre;
+            this.Apellido = apellido;
+            this.Nacionalidad = nacionalidad;
+        }
 
-        public Persona(string nombre, string apellido, int dni, ENacionalidad nacionalidad)
+        public Persona(string nombre, string apellido, int dni, EntidadesAbstractas.Persona.ENacionalidad nacionalidad)
              : this(nombre, apellido, nacionalidad)
 
-        { }
+        {
+            this.Dni = dni;
+        }
 
-        public Persona(string nombre, string apellido, string dni, ENacionalidad nacionalidad)
+        public Persona(string nombre, string apellido, string dni, EntidadesAbstractas.Persona.ENacionalidad nacionalidad)
             : this(nombre, apellido, nacionalidad)
         {
             this.StringToDNI = dni;
@@ -121,7 +128,7 @@ namespace ClasesAbstractas
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("NOMBRE COMPLETO: {0}, {1}\n", this.Apellido, this.Nombre);
            // sb.AppendFormat("DNI: {0} ", this.Dni);
-            sb.AppendFormat("NACIONALIDAD : {0}\n", this.Nacionalidad);
+            sb.AppendFormat("NACIONALIDAD: {0}\n", this.Nacionalidad);
 
             return sb.ToString();
         }
@@ -141,7 +148,7 @@ namespace ClasesAbstractas
                 return dato;
             } else
             {
-                throw new Excepciones.NacionalidadInvalidaException();
+                throw new Excepciones.NacionalidadInvalidaException("La nacionalidad no se condice con el número de DNI");
             }
         }
 
@@ -152,12 +159,13 @@ namespace ClasesAbstractas
             {
                 throw new Excepciones.DniInvalidoException();
             };
-            return this.ValidarDni(nacionalidad, dniNumerico);
+            return dniNumerico;
         }
 
         private string ValidarNombreApellido(string dato)
         {
-            return !string.IsNullOrEmpty(dato) || dato.Any(x => !Regex.IsMatch(dato, @"\A[\p{L}\s]+\Z")) ? string.Empty : dato;
+            return string.IsNullOrEmpty(dato) || dato.Any(x => !Regex.IsMatch(dato, @"\A[\p{L}\s]+\Z")) ? string.Empty : dato;
+            //return !string.IsNullOrEmpty(dato) || dato.Any(x => !Regex.IsMatch(dato, @"\A[\p{L}\s]+\Z")) ? string.Empty : dato;
         }
         #endregion
     }

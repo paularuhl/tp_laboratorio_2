@@ -1,4 +1,4 @@
-﻿using ClasesAbstractas;
+﻿using EntidadesAbstractas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +34,9 @@ namespace ClasesInstanciables
         protected override string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(base.MostrarDatos());
+            sb.AppendLine(base.MostrarDatos());
 
-            sb.AppendFormat("ESTADO DE CUENTA: {0}\n", this.estadoCuenta);
+            sb.AppendFormat("ESTADO DE CUENTA: {0}\n", this.estadoCuenta == EEstadoCuenta.AlDia ? "Cuota al día" : this.estadoCuenta.ToString());
             sb.AppendFormat($"{this.ParticiparEnClase()}\n");
             return sb.ToString();
         }

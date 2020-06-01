@@ -1,4 +1,4 @@
-﻿using ClasesAbstractas;
+﻿using EntidadesAbstractas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace ClasesInstanciables
         {
 
         }
-        public Profesor(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad)
+        public Profesor(int id, string nombre, string apellido, string dni, EntidadesAbstractas.Persona.ENacionalidad nacionalidad)
             : base(id, nombre, apellido, dni, nacionalidad)
         {
             this.clasesDelDia = new Queue<Universidad.EClases>();
@@ -44,8 +44,8 @@ namespace ClasesInstanciables
         protected override string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
+            
             sb.Append(base.MostrarDatos());
-
             sb.AppendFormat($"{this.ParticiparEnClase()}\n");
 
             return sb.ToString();

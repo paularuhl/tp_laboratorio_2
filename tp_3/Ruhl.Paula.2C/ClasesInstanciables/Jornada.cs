@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClasesInstanciables;
-using ClasesInstanciables;
 
 namespace ClasesInstanciables
 {
@@ -97,7 +96,14 @@ namespace ClasesInstanciables
         /// <returns>True si participa, false si no.</returns>
         public static bool operator ==(Jornada j, Alumno a)
         {
-            return j.alumnos.Contains(a);
+            foreach(Alumno alumno in j.Alumnos)
+            {
+                if(alumno == a)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -121,15 +127,7 @@ namespace ClasesInstanciables
         /// <returns>Jornada con o sin cambios</returns>
         public static Jornada operator +(Jornada j, Alumno a)
         {
-
-            foreach (Alumno al in j.Alumnos)
-            {
-                if (j == a)
-                {
-                    return j;
-                }
-            }
-            j.Alumnos.Add(a);
+            if(j != a) j.Alumnos.Add(a);
             return j;
         }
 
@@ -143,6 +141,7 @@ namespace ClasesInstanciables
 
             sb.Append($"CLASE DE {this.Clase.ToString()} POR ");
             sb.AppendFormat(this.Instructor.ToString());
+            sb.AppendLine("ALUMNOS:");
             foreach (Alumno a in this.Alumnos)
             {
                 sb.Append(a.ToString());

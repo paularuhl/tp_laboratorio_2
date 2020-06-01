@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{101AA540-5DCD-4DAC-AF8C-3E92287DAE05}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClasesInstanciables</RootNamespace>
-    <AssemblyName>ClasesInstanciables</AssemblyName>
+    <ProjectGuid>{8375EAE7-3C31-4D36-83D7-12BDC3609A96}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Programa</RootNamespace>
+    <AssemblyName>Programa</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,19 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alumno.cs" />
-    <Compile Include="Jornada.cs" />
-    <Compile Include="Profesor.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Universidad.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClasesAbstractas\EntidadesAbstractas.csproj">
-      <Project>{E9658858-CF7A-47FC-BFC6-642CC918B7BA}</Project>
+      <Project>{e9658858-cf7a-47fc-bfc6-642cc918b7ba}</Project>
       <Name>EntidadesAbstractas</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClasesInstanciables\ClasesInstanciables.csproj">
+      <Project>{101AA540-5DCD-4DAC-AF8C-3E92287DAE05}</Project>
+      <Name>ClasesInstanciables</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Excepciones\Excepciones.csproj">
-      <Project>{264F4E2B-22FE-4BDE-BA17-96BD4EB98AF0}</Project>
+      <Project>{264f4e2b-22fe-4bde-ba17-96bd4eb98af0}</Project>
       <Name>Excepciones</Name>
     </ProjectReference>
   </ItemGroup>
