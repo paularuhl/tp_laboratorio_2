@@ -19,7 +19,8 @@ namespace ClasesInstanciables
 
         }
 
-        public Alumno(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad, Universidad.EClases claseQueToma)
+        public Alumno(int id, string nombre, string apellido, string dni, ENacionalidad nacionalidad, Universidad.EClases claseQueToma) 
+            : base(id, nombre, apellido, dni, nacionalidad)
         {
             this.claseQueToma = claseQueToma;
         }
@@ -32,26 +33,31 @@ namespace ClasesInstanciables
 
         protected override string MostrarDatos()
         {
-            return "";
+            return this.ToString();
         }
 
         protected override string ParticiparEnClase()
         {
-            return "";
+            return $"TOMA CLASEs DE {this.claseQueToma} ";
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(base.MostrarDatos());
+
+            sb.AppendFormat("ESTADO DE CUENTA: {0}\n", this.estadoCuenta);
+            sb.AppendFormat($"{this.ParticiparEnClase()}\n");
+            return sb.ToString();
         }
 
         public static bool operator ==(Alumno a, Universidad.EClases clase)
         {
-
+            return a.claseQueToma == clase && a.estadoCuenta != EEstadoCuenta.Deudor;
         }
         public static bool operator !=(Alumno a, Universidad.EClases clase)
         {
-            return !(a == clase);
+            return a.claseQueToma != clase;
         }
     }
 }

@@ -51,25 +51,48 @@ namespace ClasesAbstractas
             }
             set
             {
-                this.dni = this.ValidarDni(nacionalidad, value);
+                try
+                {
+                    this.dni = this.ValidarDni(nacionalidad, value);
+                }
+                catch (Excepciones.DniInvalidoException ex)
+                {
+
+                }
+                catch (Excepciones.NacionalidadInvalidaException ex)
+                {
+
+                }
             }
         }
-        public ENacionalidad Nacionalidad { 
-            get 
-            { 
+        public ENacionalidad Nacionalidad
+        {
+            get
+            {
                 return this.nacionalidad;
-            } 
-            set 
+            }
+            set
             {
                 this.nacionalidad = value;
-            } 
+            }
         }
 
         public string StringToDNI
         {
             set
             {
-                this.Dni = this.ValidarDni(this.Nacionalidad, value);
+                try
+                {
+                    this.Dni = this.ValidarDni(this.Nacionalidad, value);
+                }
+                catch (Excepciones.DniInvalidoException ex)
+                {
+
+                }
+                catch (Excepciones.NacionalidadInvalidaException ex)
+                {
+
+                }
             }
         }
         #endregion
@@ -96,39 +119,40 @@ namespace ClasesAbstractas
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Nombre: {0}", this.Nombre);
-            sb.AppendFormat("Apellido: {0}", this.Apellido);
-            sb.AppendFormat("DNI: {0}", this.Dni);
-            sb.AppendFormat("Nacionalidad: {0}", this.Nacionalidad);
+            sb.AppendFormat("NOMBRE COMPLETO: {0}, {1}\n", this.Apellido, this.Nombre);
+           // sb.AppendFormat("DNI: {0} ", this.Dni);
+            sb.AppendFormat("NACIONALIDAD : {0}\n", this.Nacionalidad);
 
             return sb.ToString();
         }
 
         private int ValidarDni(ENacionalidad nacionalidad, int dato)
         {
-            bool flag = false;
-            if ((dni > 1 && dni < 90000000) && (nacionalidad == ENacionalidad.Argentino))
+            bool dniEsArgentino = dato > 1 && dato < 90000000;
+            bool dniEsExtranjero = dato > 90000000 && dato < 99999999;
+
+            if(!dniEsArgentino && !dniEsExtranjero)
             {
-                flag = true;
+                throw new Excepciones.DniInvalidoException();
             }
-            else if ((dni > 90000000 && dni < 99999999) && (nacionalidad == ENacionalidad.Extranjero))
+            else if ((dniEsArgentino && nacionalidad == ENacionalidad.Argentino) ||
+            (dniEsExtranjero && nacionalidad == ENacionalidad.Extranjero))
             {
-                flag = true;
-            }
-            else
+                return dato;
+            } else
             {
-                //DniInvalidoException
+                throw new Excepciones.NacionalidadInvalidaException();
             }
-            return 0;
         }
+
         private int ValidarDni(ENacionalidad nacionalidad, string dato)
         {
-            int dni;
-            if (!int.TryParse(dato, out dni))
+            int dniNumerico;
+            if (!int.TryParse(dato, out dniNumerico))
             {
-                //DniInvalidoException
+                throw new Excepciones.DniInvalidoException();
             };
-            return this.ValidarDni(nacionalidad, dni);
+            return this.ValidarDni(nacionalidad, dniNumerico);
         }
 
         private string ValidarNombreApellido(string dato)
