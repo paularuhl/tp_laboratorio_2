@@ -8,5 +8,6 @@ namespace Excepciones
 {
     public class ArchivosException : Exception
     {
+        public ArchivosException() : base("El archivo no pudo ser serializado") { }
     }
 }

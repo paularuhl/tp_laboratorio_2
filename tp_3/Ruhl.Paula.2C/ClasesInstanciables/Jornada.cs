@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Archivos;
 using ClasesInstanciables;
 
 namespace ClasesInstanciables
@@ -157,41 +158,20 @@ namespace ClasesInstanciables
         /// <returns>bool, si pudo o no guardarse la misma.</returns>
         public static bool Guardar(Jornada j)
         {
-            StreamWriter writer = null;
-            string path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\";
-            try
-            {
-                using (writer = new StreamWriter(path))
-                {
-                    writer.WriteLine(Leer(j));
-                }
-            }
-            catch (Exception e)
-            {
+            Texto<Jornada> serializador = new Texto<Jornada>();
 
-            }
-            finally
-            {
-                if(!(writer is null))
-                {
-
-                }
-                else
-                {
-                }
-            }
-
-            return true;
+            return serializador.Guardar(j);
         }
 
         /// <summary>
-        /// Retorna los datos de la jornada como texto.
+        /// Retorna los datos de la jornada como string desde un texto.
         /// </summary>
-        /// <param name="j"></param>
         /// <returns></returns>
-        public static string Leer(Jornada j)
+        public static string Leer()
         {
-            return j.ToString();
+            Texto<Jornada> serializador = new Texto<Jornada>();
+
+            return serializador.Leer();
         }
     }
 }

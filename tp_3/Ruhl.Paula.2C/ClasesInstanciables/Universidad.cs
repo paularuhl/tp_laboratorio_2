@@ -1,4 +1,6 @@
-﻿using Excepciones;
+﻿using Archivos;
+using EntidadesAbstractas;
+using Excepciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
+    [Serializable]
     public class Universidad
     {
         public enum EClases { Programacion, Laboratorio, Legislacion, SPD }
@@ -23,7 +26,6 @@ namespace ClasesInstanciables
         /// Lista de quienes pueden dar las clases.
         /// </summary>
         private List<Profesor> profesores;
-
 
         public List<Alumno> Alumnos
         {
@@ -80,7 +82,9 @@ namespace ClasesInstanciables
         /// <returns></returns>
         public static bool Guardar(Universidad uni)
         {
-            return true;
+            Xml<Universidad> serializador = new Xml<Universidad>();
+
+            return serializador.Guardar(uni);
         }
         /// <summary>
         /// Retornará un Universidad con todos los datos que se hayan serializado previamente
@@ -88,7 +92,9 @@ namespace ClasesInstanciables
         /// <returns></returns>
         public static Universidad Leer()
         {
-            return new Universidad();
+            Xml<Universidad> serializador = new Xml<Universidad>();
+
+            return serializador.Leer();
         }
 
         /// <summary>
@@ -212,7 +218,7 @@ namespace ClasesInstanciables
             {
 
                 //Verifico los alumnos que toman la clase
-                List<Alumno> alumnosQueLaToman = u.Alumnos.Where(a => a == clase).ToList();
+                List<Alumno> alumnosQueLaToman = u.Alumnos.Where(a => a == clase && a as Universitario != profesorDisponible as Universitario).ToList();
 
                 //Crea la jornada y le asigno clase y profesor
                 Jornada j = new Jornada(clase, profesorDisponible);

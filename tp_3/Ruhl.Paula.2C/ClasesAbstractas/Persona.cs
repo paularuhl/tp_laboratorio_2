@@ -51,18 +51,7 @@ namespace EntidadesAbstractas
             }
             set
             {
-                //try
-                //{
-                    this.dni = this.ValidarDni(nacionalidad, value);
-                //}
-                //catch (Excepciones.DniInvalidoException ex)
-                //{
-
-                //}
-                //catch (Excepciones.NacionalidadInvalidaException ex)
-                //{
-
-                //}
+                this.dni = this.ValidarDni(nacionalidad, value);
             }
         }
         public ENacionalidad Nacionalidad
@@ -81,18 +70,7 @@ namespace EntidadesAbstractas
         {
             set
             {
-                try
-                {
-                    this.Dni = this.ValidarDni(this.Nacionalidad, value);
-                }
-                catch (Excepciones.DniInvalidoException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                catch (Excepciones.NacionalidadInvalidaException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                this.Dni = this.ValidarDni(this.Nacionalidad, value);
             }
         }
         #endregion
