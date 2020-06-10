@@ -81,21 +81,21 @@ namespace EntidadesAbstractas
 
         }
 
-        public Persona(string nombre, string apellido, EntidadesAbstractas.Persona.ENacionalidad nacionalidad) 
+        public Persona(string nombre, string apellido, Persona.ENacionalidad nacionalidad) 
         {
             this.Nombre = nombre;
             this.Apellido = apellido;
             this.Nacionalidad = nacionalidad;
         }
 
-        public Persona(string nombre, string apellido, int dni, EntidadesAbstractas.Persona.ENacionalidad nacionalidad)
+        public Persona(string nombre, string apellido, int dni, Persona.ENacionalidad nacionalidad)
              : this(nombre, apellido, nacionalidad)
 
         {
             this.Dni = dni;
         }
 
-        public Persona(string nombre, string apellido, string dni, EntidadesAbstractas.Persona.ENacionalidad nacionalidad)
+        public Persona(string nombre, string apellido, string dni, Persona.ENacionalidad nacionalidad)
             : this(nombre, apellido, nacionalidad)
         {
             this.StringToDNI = dni;
@@ -126,7 +126,7 @@ namespace EntidadesAbstractas
                 return dato;
             } else
             {
-                throw new Excepciones.NacionalidadInvalidaException("La nacionalidad no se condice con el número de DNI");
+                throw new Excepciones.NacionalidadInvalidaException();
             }
         }
 

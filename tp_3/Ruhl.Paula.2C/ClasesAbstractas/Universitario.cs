@@ -8,12 +8,31 @@ namespace EntidadesAbstractas
 {
     public abstract class Universitario : Persona
     {
+        /// <summary>
+        /// Atributo legajo.
+        /// </summary>
         private int legajo;
 
-        public Universitario()
+        /// <summary>
+        /// Propiedad que da acceso al serializador XML a Legajo.
+        /// </summary>
+        public int Legajo
         {
-
+            get
+            {
+                return this.legajo;
+            }
+            set
+            {
+                this.legajo = value;
+            }
         }
+
+        /// <summary>
+        /// Constructor por defecto para poder serializar. 
+        /// </summary>
+        public Universitario() { }
+
         /// <summary>
         /// Constructor de clase universitario que inicializa el atributo 
         /// legajo y llama al constructor de la clase base

@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClasesAbstractas\EntidadesAbstractas.csproj">
+    <ProjectReference Include="..\ClasesAbstractas\ClasesAbstractas.csproj">
       <Project>{e9658858-cf7a-47fc-bfc6-642cc918b7ba}</Project>
-      <Name>EntidadesAbstractas</Name>
+      <Name>ClasesAbstractas</Name>
     </ProjectReference>
     <ProjectReference Include="..\ClasesInstanciables\ClasesInstanciables.csproj">
       <Project>{101AA540-5DCD-4DAC-AF8C-3E92287DAE05}</Project>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Excepciones;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,23 +19,29 @@ namespace Archivos
         /// </summary>
         /// <param name="dato">dato de tipo genérico</param>
         /// <returns></returns>
-        public bool Guardar(T dato)
+        public bool Guardar(string archivo, T dato)
         {
             XmlTextWriter writer = null;
             XmlSerializer ser = null;
+            bool pudoSerializar = false; 
 
-            using (writer = new XmlTextWriter(path, Encoding.UTF8))
+            try
             {
-                if (writer != null)
+                using (writer = new XmlTextWriter(path, Encoding.UTF8))
                 {
-                    ser = new XmlSerializer(dato.GetType());
-                    ser.Serialize(writer, dato);
-                }
-                else
-                {
-                    throw new Excepciones.ArchivosException();
+                    if (writer != null)
+                    {
+                        ser = new XmlSerializer(dato.GetType());
+                        ser.Serialize(writer, dato);
+                        pudoSerializar = true;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                throw new ArchivosException("No se pudo serializar.", ex);
+            }
+            
             return true;
         }
 
@@ -41,19 +49,32 @@ namespace Archivos
         /// Deserializa un archivo de tipo XML al tipo deseado.
         /// </summary>
         /// <returns> Dato de tipo genérico </returns>
-        public T Leer()
+        public bool Leer(string archivo, out T datos)
         {
             XmlTextReader reader = null;
             XmlSerializer ser = null;
-            T aux;
+            datos = default(T);
+            bool pudoDeserializar = false; 
 
-            using (reader = new XmlTextReader(path))
+            try
             {
-                ser = new XmlSerializer(typeof(T));
-                aux = (T)ser.Deserialize(reader);
+                using (reader = new XmlTextReader(path))
+                {
+                    if(reader != null)
+                    {
+                        ser = new XmlSerializer(typeof(T));
+                        datos = (T)ser.Deserialize(reader);
+                        pudoDeserializar = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                pudoDeserializar = false;
+                //throw new ArchivosException("No se pudo Deserializar.", ex);
             }
 
-            return aux;
+            return pudoDeserializar;
         }
     }
 }

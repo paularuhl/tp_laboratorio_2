@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
-    [Serializable]
     public class Universidad
     {
         public enum EClases { Programacion, Laboratorio, Legislacion, SPD }
@@ -72,6 +71,7 @@ namespace ClasesInstanciables
             this.Alumnos = new List<Alumno>();
             this.Jornadas = new List<Jornada>();
             this.Instructores = new List<Profesor>();
+
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace ClasesInstanciables
         {
             Xml<Universidad> serializador = new Xml<Universidad>();
 
-            return serializador.Guardar(uni);
+            return serializador.Guardar("Universidad.xml", uni);
         }
         /// <summary>
         /// Retornará un Universidad con todos los datos que se hayan serializado previamente
@@ -93,8 +93,9 @@ namespace ClasesInstanciables
         public static Universidad Leer()
         {
             Xml<Universidad> serializador = new Xml<Universidad>();
-
-            return serializador.Leer();
+            Universidad uni = null;
+            serializador.Leer("Universidad.xml", out uni);
+            return uni;
         }
 
         /// <summary>

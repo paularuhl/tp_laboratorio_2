@@ -8,9 +8,7 @@ namespace Excepciones
 {
     public class AlumnoRepetidoException : Exception
     {
-  
-        public AlumnoRepetidoException() : base("Alumno Repetido.")
-        {
-        }
+        public AlumnoRepetidoException() : this("Alumno Repetido.") { }
+        public AlumnoRepetidoException(string message) : base(message) { }
     }
 }

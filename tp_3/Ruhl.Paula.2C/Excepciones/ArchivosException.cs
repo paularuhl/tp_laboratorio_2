@@ -8,6 +8,9 @@ namespace Excepciones
 {
     public class ArchivosException : Exception
     {
-        public ArchivosException() : base("El archivo no pudo ser serializado") { }
+        public ArchivosException() : this("Error en Archivos") { }
+        public ArchivosException(Exception e) : this("Error en Archivos", e) { }
+        public ArchivosException(string message) : this(message, null) { }
+        public ArchivosException(string message, Exception e) : base(message, e) { }
     }
 }

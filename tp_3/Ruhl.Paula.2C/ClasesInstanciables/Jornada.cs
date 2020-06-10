@@ -128,7 +128,7 @@ namespace ClasesInstanciables
         /// <returns>Jornada con o sin cambios</returns>
         public static Jornada operator +(Jornada j, Alumno a)
         {
-            if(j != a) j.Alumnos.Add(a);
+            if(j != a && a != j.Instructor) j.Alumnos.Add(a);
             return j;
         }
 
@@ -158,9 +158,9 @@ namespace ClasesInstanciables
         /// <returns>bool, si pudo o no guardarse la misma.</returns>
         public static bool Guardar(Jornada j)
         {
-            Texto<Jornada> serializador = new Texto<Jornada>();
+            Texto archivoHandler = new Texto();
 
-            return serializador.Guardar(j);
+            return archivoHandler.Guardar("jornadas.txt", j.ToString());
         }
 
         /// <summary>
@@ -169,9 +169,12 @@ namespace ClasesInstanciables
         /// <returns></returns>
         public static string Leer()
         {
-            Texto<Jornada> serializador = new Texto<Jornada>();
+            Texto serializador = new Texto();
+            string jornadaLeida = string.Empty;
 
-            return serializador.Leer();
+            serializador.Leer("Jornadas.txt", out jornadaLeida);
+
+            return jornadaLeida;
         }
     }
 }
