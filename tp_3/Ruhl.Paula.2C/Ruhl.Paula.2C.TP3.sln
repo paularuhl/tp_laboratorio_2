@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archivos", "Archivos\Archiv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Programa", "Programa\Programa.csproj", "{8375EAE7-3C31-4D36-83D7-12BDC3609A96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TP3.Tests", "TP3.Tests\TP3.Tests.csproj", "{9209DC9D-49BF-497C-BC2F-3EFA1FBCA575}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8375EAE7-3C31-4D36-83D7-12BDC3609A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8375EAE7-3C31-4D36-83D7-12BDC3609A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8375EAE7-3C31-4D36-83D7-12BDC3609A96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9209DC9D-49BF-497C-BC2F-3EFA1FBCA575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9209DC9D-49BF-497C-BC2F-3EFA1FBCA575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9209DC9D-49BF-497C-BC2F-3EFA1FBCA575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9209DC9D-49BF-497C-BC2F-3EFA1FBCA575}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

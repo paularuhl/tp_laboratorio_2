@@ -132,7 +132,7 @@ namespace EntidadesAbstractas
             int dniNumerico;
             if (!int.TryParse(dato, out dniNumerico))
             {
-                throw new DniInvalidoException();
+                throw new DniInvalidoException("El DNI Ingresado no es numérico");
             };
             return dniNumerico;
         }
