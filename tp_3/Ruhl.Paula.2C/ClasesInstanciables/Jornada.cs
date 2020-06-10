@@ -128,7 +128,7 @@ namespace ClasesInstanciables
         /// <returns>Jornada con o sin cambios</returns>
         public static Jornada operator +(Jornada j, Alumno a)
         {
-            if(j != a && a != j.Instructor) j.Alumnos.Add(a);
+            if(j != a) j.Alumnos.Add(a);
             return j;
         }
 
