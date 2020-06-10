@@ -40,7 +40,7 @@ namespace Archivos
                 throw new ArchivosException("No se pudo serializar.", ex);
             }
             
-            return true;
+            return pudoSerializar;
         }
 
         /// <summary>
@@ -68,8 +68,7 @@ namespace Archivos
             }
             catch (Exception ex)
             {
-                pudoDeserializar = false;
-                //throw new ArchivosException("No se pudo Deserializar.", ex);
+                throw new ArchivosException("No se pudo Deserializar.", ex);
             }
 
             return pudoDeserializar;
