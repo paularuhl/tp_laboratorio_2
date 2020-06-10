@@ -12,8 +12,6 @@ namespace Archivos
 {
     public class Xml<T> : IArchivo<T>
     {
-        private static string path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\XmlPrueba.xml";
-
         /// <summary>
         /// Serializa un dato de Tipo genérico a xml y lo guarda.
         /// </summary>
@@ -27,7 +25,7 @@ namespace Archivos
 
             try
             {
-                using (writer = new XmlTextWriter(path, Encoding.UTF8))
+                using (writer = new XmlTextWriter(archivo, Encoding.UTF8))
                 {
                     if (writer != null)
                     {
@@ -58,7 +56,7 @@ namespace Archivos
 
             try
             {
-                using (reader = new XmlTextReader(path))
+                using (reader = new XmlTextReader(archivo))
                 {
                     if(reader != null)
                     {

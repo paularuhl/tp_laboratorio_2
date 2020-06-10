@@ -10,8 +10,6 @@ namespace Archivos
 {
     public class Texto : IArchivo<string>
     {
-        private static string path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\TextoPrueba.txt";
-        
         /// <summary>
         /// Serializa un dato de Tipo genérico a xml y lo guarda.
         /// </summary>
@@ -23,7 +21,7 @@ namespace Archivos
             bool pudoEscribir = false;
             try
             {
-                using (writer = new StreamWriter(path))
+                using (writer = new StreamWriter(archivo))
                 {
                     writer.WriteLine(dato);
                     pudoEscribir = true;
@@ -59,7 +57,7 @@ namespace Archivos
 
             try
             {
-                using (reader = new StreamReader(path))
+                using (reader = new StreamReader(archivo))
                 {
                     datos = reader.ReadToEnd();
                     pudoLeer = true;

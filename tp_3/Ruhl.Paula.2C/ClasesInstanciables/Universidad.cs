@@ -71,7 +71,6 @@ namespace ClasesInstanciables
             this.Alumnos = new List<Alumno>();
             this.Jornadas = new List<Jornada>();
             this.Instructores = new List<Profesor>();
-
         }
 
         /// <summary>
@@ -171,7 +170,7 @@ namespace ClasesInstanciables
                     }
                 }
             }
-            throw new Excepciones.SinProfesorException();
+            throw new SinProfesorException();
         }
 
         /// <summary>
@@ -235,7 +234,7 @@ namespace ClasesInstanciables
             }
             else
             {
-                throw new Excepciones.SinProfesorException();
+                throw new SinProfesorException();
             }
             //Retorno la universidad actualizada
             return u;

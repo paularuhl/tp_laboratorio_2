@@ -19,7 +19,7 @@ namespace ClasesInstanciables
         }
         public Profesor()
         {
-
+            this.clasesDelDia = new Queue<Universidad.EClases>();
         }
         public Profesor(int id, string nombre, string apellido, string dni, EntidadesAbstractas.Persona.ENacionalidad nacionalidad)
             : base(id, nombre, apellido, dni, nacionalidad)
