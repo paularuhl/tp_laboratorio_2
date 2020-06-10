@@ -24,7 +24,6 @@ namespace Programa
                 Alumno.EEstadoCuenta.Deudor);
                 uni += a2;
             }
-
             catch (NacionalidadInvalidaException e)
             {
                 Console.WriteLine(e.Message);
