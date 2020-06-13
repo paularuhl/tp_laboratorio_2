@@ -61,6 +61,22 @@ namespace TP3.Tests
             uni += a1;
         }
 
+        /// <summary>
+        /// Si el alumno ya es parte de la universidad, deberia lanzar AlumnoRepetidoException
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(AlumnoRepetidoException))]
+        public void ArchivoInexistente_Throws()
+        {
+            Universidad uni = new Universidad();
+            Alumno a1 = new Alumno(7, "Paula", "Ruhl", "40011750",
+            Persona.ENacionalidad.Argentino, Universidad.EClases.Programacion, Alumno.EEstadoCuenta.AlDia);
+
+            uni += a1;
+            uni += a1;
+        }
+
+
 
     }
 }
