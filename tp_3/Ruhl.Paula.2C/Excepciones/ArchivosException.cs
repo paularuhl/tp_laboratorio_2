@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Excepciones
 {
+    /// <summary>
+    /// Clase ArchivosException, que engloba las excepciones generadas en la creación, serialización, 
+    /// lectura y deserialización de los mismos. Hereda de Exception.
+    /// </summary>
     public class ArchivosException : Exception
     {
         public ArchivosException() : this("Error en Archivos") { }

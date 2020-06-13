@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Excepciones
 {
+    /// <summary>
+    /// Clase DniInvalidoException, que engloba las excepciones relacionadas con formato de DNI.
+    /// </summary>
     public class DniInvalidoException : Exception
     {
         public DniInvalidoException() : this ("DNI inválido") { }
