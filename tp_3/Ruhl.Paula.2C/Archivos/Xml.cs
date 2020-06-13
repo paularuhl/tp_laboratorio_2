@@ -10,14 +10,18 @@ using System.Xml.Serialization;
 
 namespace Archivos
 {
+    /// <summary>
+    /// Clase Xml, encargada de serializar y deserializar datos, guardándolos o leyendolos en un archivo tipo xml.
+    /// </summary>
     public class Xml<T> : IArchivo<T>
     {
         /// <summary>
-        /// Serializa un dato de Tipo genérico a xml y lo guarda.
+        /// Guarda un archivo xml luego de serializarlo desde su propio Tipo.
         /// </summary>
-        /// <param name="dato">dato de tipo genérico</param>
+        /// <param name="archivo">Nombre del archivo a guardar</param>
+        /// <param name="datos">dato de tipo genérico a serializar</param>
         /// <returns></returns>
-        public bool Guardar(string archivo, T dato)
+        public bool Guardar(string archivo, T datos)
         {
             XmlTextWriter writer = null;
             XmlSerializer ser = null;
@@ -25,12 +29,12 @@ namespace Archivos
 
             try
             {
-                using (writer = new XmlTextWriter(archivo, Encoding.UTF8))
+                using (writer = new XmlTextWriter($"{archivo}.xml", Encoding.UTF8))
                 {
                     if (writer != null)
                     {
-                        ser = new XmlSerializer(dato.GetType());
-                        ser.Serialize(writer, dato);
+                        ser = new XmlSerializer(datos.GetType());
+                        ser.Serialize(writer, datos);
                         pudoSerializar = true;
                     }
                 }
@@ -44,9 +48,11 @@ namespace Archivos
         }
 
         /// <summary>
-        /// Deserializa un archivo de tipo XML al tipo deseado.
+        /// Lee un archivo xml y lo deserializa al tipo de dato correspondiente
         /// </summary>
-        /// <returns> Dato de tipo genérico </returns>
+        /// <param name="archivo">Nombre del archivo a leer y deserializar</param>
+        /// <param name="datos">Datos de tipo genérico, deserializados. </param>
+        /// <returns>True si pudo realizar la operación, false si no.</returns>
         public bool Leer(string archivo, out T datos)
         {
             XmlTextReader reader = null;
@@ -56,7 +62,9 @@ namespace Archivos
 
             try
             {
-                using (reader = new XmlTextReader(archivo))
+                if (!File.Exists(archivo)) throw new ArchivosException($"El archivo {archivo} no existe");
+
+                using (reader = new XmlTextReader($"{archivo}.xml"))
                 {
                     if(reader != null)
                     {

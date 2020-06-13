@@ -8,22 +8,27 @@ using System.Threading.Tasks;
 
 namespace Archivos
 {
+    /// <summary>
+    /// Clase Texto, encargada de guardar y leer archivos de texto.
+    /// </summary>
     public class Texto : IArchivo<string>
     {
+
         /// <summary>
-        /// Serializa un dato de Tipo genérico a xml y lo guarda.
+        /// Guarda como texto los datos que se envían por parámetro.
         /// </summary>
-        /// <param name="dato">dato de tipo genérico</param>
-        /// <returns></returns>
-        public bool Guardar(string archivo, string dato)
+        /// <param name="archivo">Nombre del archivo a guardar</param>
+        /// <param name="datos">Datos a guardar en el archivo</param>
+        /// <returns>True si pudo guardar, false si no.</returns>
+        public bool Guardar(string archivo, string datos)
         {
             StreamWriter writer = null;
             bool pudoEscribir = false;
             try
             {
-                using (writer = new StreamWriter(archivo))
+                using (writer = new StreamWriter($"{archivo}.txt"))
                 {
-                    writer.WriteLine(dato);
+                    writer.WriteLine(datos);
                     pudoEscribir = true;
                 }
             }
@@ -45,11 +50,18 @@ namespace Archivos
             }
             finally
             {
-                if (!pudoEscribir) throw new ArchivosException("No se pudo escribir el archivo.");
+                if (!pudoEscribir) throw new ArchivosException("No se pudo escribir el archivo de texto.");
             }
+
             return pudoEscribir;
         }
 
+        /// <summary>
+        /// Lee un archivo de texto y lo retorna como cadena por out parameter.
+        /// </summary>
+        /// <param name="archivo">Nombre del archivo a leer</param>
+        /// <param name="datos">String a devolver con los datos del archivo en cuestión.</param>
+        /// <returns>True si pudo leer, false si no.</returns>
         public bool Leer(string archivo, out string datos)
         {
             StreamReader reader = null;
@@ -57,7 +69,8 @@ namespace Archivos
 
             try
             {
-                using (reader = new StreamReader(archivo))
+
+                using (reader = new StreamReader($"{archivo}.txt"))
                 {
                     datos = reader.ReadToEnd();
                     pudoLeer = true;
@@ -65,7 +78,7 @@ namespace Archivos
             }
             catch (FileNotFoundException e)
             {
-                throw new ArchivosException(e);
+                throw new ArchivosException("El archivo no existe", e);
             }
             catch (NotSupportedException e)
             {
