@@ -62,7 +62,7 @@ namespace Archivos
 
             try
             {
-                if (!File.Exists(archivo)) throw new ArchivosException($"El archivo {archivo} no existe");
+                if (!File.Exists($"{archivo}.xml")) throw new ArchivosException($"El archivo {archivo} no existe");
 
                 using (reader = new XmlTextReader($"{archivo}.xml"))
                 {
