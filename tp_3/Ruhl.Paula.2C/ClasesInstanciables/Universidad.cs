@@ -9,10 +9,19 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
+    /// <summary>
+    /// Clase pública e instanciable Universidad.
+    /// </summary>
     public class Universidad
     {
+        #region nestedTypes
+        /// <summary>
+        /// Enumerado de materias disponibles en el tipo Universidad.
+        /// </summary>
         public enum EClases { Programacion, Laboratorio, Legislacion, SPD }
+        #endregion
 
+        #region atributos
         /// <summary>
         /// Lista de inscriptos
         /// </summary>
@@ -25,7 +34,12 @@ namespace ClasesInstanciables
         /// Lista de quienes pueden dar las clases.
         /// </summary>
         private List<Profesor> profesores;
+        #endregion
 
+        #region propiedades e indexadores
+        /// <summary>
+        /// Propiedad que asigna y retorna la lista de inscriptos
+        /// </summary>
         public List<Alumno> Alumnos
         {
             get
@@ -37,6 +51,9 @@ namespace ClasesInstanciables
                 this.alumnos = value;
             }
         }
+        /// <summary>
+        /// Propiedad que asigna y retorna la lista de jornadas de la universidad. 
+        /// </summary>
         public List<Jornada> Jornadas
         {
             get
@@ -48,6 +65,9 @@ namespace ClasesInstanciables
                 this.jornadas = value;
             }
         }
+        /// <summary>
+        /// Propiedad que asigna y retorna la lista de quienes pueden dar las clases.
+        /// </summary>
         public List<Profesor> Instructores
         {
             get
@@ -59,41 +79,58 @@ namespace ClasesInstanciables
                 this.profesores = value;
             }
         }
+
+        /// <summary>
+        /// Indexador que retorna la jornada pasada por parámetro
+        /// </summary>
+        /// <param name="i">parámetro índice</param>
+        /// <returns>Jornada en posición i</returns>
         public Jornada this[int i]
         {
             get
             {
-                return this.jornadas[i];
+                return this.Jornadas[i];
             }
         }
+        #endregion
+
+        #region constructor
+        /// <summary>
+        /// Constructor por defecto de los objetos de tipo Universidad,
+        /// inicializa las colecciones de la misma. 
+        /// También nos permite serializar y deserializar objetos de este tipo.
+        /// </summary>
         public Universidad()
         {
             this.Alumnos = new List<Alumno>();
             this.Jornadas = new List<Jornada>();
             this.Instructores = new List<Profesor>();
         }
+        #endregion
 
+        #region metodos
         /// <summary>
         /// Serializará los datos de Universidad en un XML,
         /// incluyendo todos los datos de sus profesores, alumnos y jornadas
         /// </summary>
-        /// <param name="uni"></param>
-        /// <returns></returns>
+        /// <param name="uni">Universidad a guardar</param>
+        /// <returns>bool, si pudo o no guardarse la misma.</returns>
         public static bool Guardar(Universidad uni)
         {
             Xml<Universidad> serializador = new Xml<Universidad>();
 
-            return serializador.Guardar("Universidad.xml", uni);
+            return serializador.Guardar("universidad", uni);
         }
+
         /// <summary>
         /// Retornará un Universidad con todos los datos que se hayan serializado previamente
         /// </summary>
-        /// <returns></returns>
+        /// <returns>objeto de tipo Universidad</returns>
         public static Universidad Leer()
         {
             Xml<Universidad> serializador = new Xml<Universidad>();
             Universidad uni = null;
-            serializador.Leer("Universidad.xml", out uni);
+            serializador.Leer("universidad", out uni);
             return uni;
         }
 
@@ -122,7 +159,9 @@ namespace ClasesInstanciables
         {
             return MostrarDatos(this);
         }
+        #endregion
 
+        #region operadores
         /// <summary>
         /// Un Universidad será igual a un alumno si el mismo está inscripto en él
         /// </summary>
@@ -155,8 +194,8 @@ namespace ClasesInstanciables
         /// <summary>
         /// Retornará el primer profesor capaz de dar la clase.
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="clase"></param>
+        /// <param name="u">universidad</param>
+        /// <param name="clase">clase a matchear con profesor</param>
         /// <returns></returns>
         public static Profesor operator ==(Universidad u, EClases clase)
         {
@@ -194,8 +233,8 @@ namespace ClasesInstanciables
         /// <summary>
         /// Retornará el primer profesor que no pueda dar la clase.
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="clase"></param>
+        /// <param name="u">Universidad</param>
+        /// <param name="clase">Clase a encontrar un profesor que no pueda darla</param>
         /// <returns></returns>
         public static Profesor operator !=(Universidad u, EClases clase)
         {
@@ -206,8 +245,8 @@ namespace ClasesInstanciables
         /// Agrega una clase a la universidad, generando una jornada y verificando
         /// profesores y alumnos disponibles.
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="clase"></param>
+        /// <param name="u">Universidad</param>
+        /// <param name="clase">Clase a agregar</param>
         /// <returns>Universidad actualizada</returns>
         public static Universidad operator +(Universidad u, EClases clase)
         {
@@ -243,8 +282,8 @@ namespace ClasesInstanciables
         /// <summary>
         /// Agrega un alumno a la universidad verificando que no esté inscripto previamente
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="a"></param>
+        /// <param name="u">Universidad</param>
+        /// <param name="a">Alumno a agregar</param>
         /// <returns>Universidad actualizada</returns>
         public static Universidad operator +(Universidad u, Alumno a)
         {
@@ -256,14 +295,14 @@ namespace ClasesInstanciables
         /// <summary>
         /// Agrega un profesor a la universidad verificando que no esté ingresado previamente
         /// </summary>
-        /// <param name="u"></param>
-        /// <param name="i"></param>
+        /// <param name="u">Universidad</param>
+        /// <param name="i">Instructor a agregar</param>
         /// <returns>Universidad actualizada</returns>
         public static Universidad operator +(Universidad u, Profesor i)
         {
             if (u != i) u.Instructores.Add(i);
             return u;
         }
-
+        #endregion
     }
 }
