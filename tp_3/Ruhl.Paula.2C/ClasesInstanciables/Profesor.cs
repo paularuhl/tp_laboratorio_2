@@ -24,7 +24,28 @@ namespace ClasesInstanciables
         /// </summary>
         private static Random random;
         #endregion
-        
+
+        #region propiedades
+        /// <summary>
+        /// Propiedad que da acceso al serializador a las clases del día, sólo se utiliza para serializar.
+        /// </summary>
+        public List<Universidad.EClases> ClasesDelDia
+        {
+            get
+            {
+                return this.clasesDelDia.ToList();
+            }
+            set
+            {
+                value.Reverse();
+                foreach (var item in value)
+                {
+                    this.clasesDelDia.Enqueue(item);
+                }
+            }
+        }
+        #endregion
+
         #region constructores
         /// <summary>
         /// Constructor estático que instanciara el atributo estático random.
@@ -82,7 +103,7 @@ namespace ClasesInstanciables
         protected override string MostrarDatos()
         {
             StringBuilder sb = new StringBuilder();
-            
+
             sb.Append(base.MostrarDatos());
             sb.AppendFormat($"{this.ParticiparEnClase()}\n");
 
