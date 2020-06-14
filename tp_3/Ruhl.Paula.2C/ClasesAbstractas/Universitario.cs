@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace EntidadesAbstractas
 {
+    /// <summary>
+    /// Clase pública y abstracta Universitario, hereda de persona.
+    /// </summary>
     public abstract class Universitario : Persona
     {
+        #region atributos
         /// <summary>
         /// Atributo legajo.
         /// </summary>
         private int legajo;
+        #endregion
 
+        #region propiedades
         /// <summary>
         /// Propiedad que da acceso al serializador XML a Legajo.
         /// </summary>
@@ -27,9 +33,11 @@ namespace EntidadesAbstractas
                 this.legajo = value;
             }
         }
+        #endregion
 
+        #region constructores
         /// <summary>
-        /// Constructor por defecto para poder serializar. 
+        /// Constructor por defecto que nos permite serializar y deserializar objetos de este tipo.
         /// </summary>
         public Universitario() { }
 
@@ -47,9 +55,11 @@ namespace EntidadesAbstractas
         {
             this.legajo = legajo;
         }
+        #endregion
 
+        #region metodos
         /// <summary>
-        /// Metodo abstracto 
+        /// Metodo abstracto que deberá ser implementado en las clases derivadas.
         /// </summary>
         /// <returns></returns>
         protected abstract string ParticiparEnClase();
@@ -65,7 +75,9 @@ namespace EntidadesAbstractas
             sb.AppendFormat("\nLEGAJO NÚMERO: {0}\n", this.legajo);
             return sb.ToString();
         }
+        #endregion
 
+        #region operadores
         /// <summary>
         /// Dos Universitario serán iguales si y solo si son del mismo tipo y su legajo o dni son iguales.
         /// </summary>
@@ -86,6 +98,6 @@ namespace EntidadesAbstractas
         {
             return !(pg1 == pg2);
         }
-
+        #endregion
     }
 }
