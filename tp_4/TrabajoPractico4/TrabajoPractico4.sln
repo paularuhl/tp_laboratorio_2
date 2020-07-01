@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Enti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{8B6AE6DB-D59C-4AE2-93FD-B6E4AF2DD485}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrmPpal", "FrmPpal\FrmPpal.csproj", "{8CAD6233-515D-49A2-95E6-E98703125AEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8B6AE6DB-D59C-4AE2-93FD-B6E4AF2DD485}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B6AE6DB-D59C-4AE2-93FD-B6E4AF2DD485}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B6AE6DB-D59C-4AE2-93FD-B6E4AF2DD485}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CAD6233-515D-49A2-95E6-E98703125AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CAD6233-515D-49A2-95E6-E98703125AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CAD6233-515D-49A2-95E6-E98703125AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CAD6233-515D-49A2-95E6-E98703125AEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
