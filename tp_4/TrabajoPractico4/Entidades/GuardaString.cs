@@ -8,7 +8,7 @@ namespace Entidades
         public static bool Guardar(this string texto, string archivo)
         {
             bool pudoGuardar = false;
-            string path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\{archivo}.txt";
+            string path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\{archivo}";
 
             using (StreamWriter file = new StreamWriter(path, true))
             {

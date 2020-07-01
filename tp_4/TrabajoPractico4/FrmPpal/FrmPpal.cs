@@ -22,7 +22,7 @@ namespace FrmPpal
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Paquete p = new Paquete(this.mtxtTrackingID.Text, this.txtDireccion.Text);
+            Paquete p = new Paquete(this.txtDireccion.Text, this.mtxtTrackingID.Text);
             p.InformaEstado += this.paq_InformaEstado;
 
             try
