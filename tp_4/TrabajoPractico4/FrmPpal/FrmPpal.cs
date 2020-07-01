@@ -43,6 +43,8 @@ namespace FrmPpal
             {
                 MessageBox.Show(ex.Message, "Paquete Repetido", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
+
+            this.ActualizarEstados();
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
@@ -52,17 +54,25 @@ namespace FrmPpal
 
         private void FrmPpal_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            this.correo.FinEntregas();
         }
 
-        private void mostrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void mostrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.MostrarInformacion<Paquete>((IMostrar<Paquete>)lstEstadoEntregado.SelectedItem);
         }
 
-        private void paq_InformaEstado(object sender, EventArgs e) 
+        private void paq_InformaEstado(object sender, EventArgs e)
         {
-
+            if (this.InvokeRequired)
+            {
+                Paquete.DelegadoEstado d = new Paquete.DelegadoEstado(paq_InformaEstado);
+                this.Invoke(d, new object[] { sender, e });
+            }
+            else
+            {
+                this.ActualizarEstados();
+            }
         }
 
         private void ActualizarEstados()
@@ -72,7 +82,7 @@ namespace FrmPpal
 
         private void MostrarInformacion<T>(IMostrar<T> elemento)
         {
-
+            this.MostrarInformacion<List<Paquete>>((IMostrar<List<Paquete>>)correo);
         }
 
     }

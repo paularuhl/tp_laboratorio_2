@@ -206,7 +206,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(217, 22);
             this.toolStripMenuItem1.Text = "mostrarToolStripMenuItem";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.mostrarToolStripMenuItem1_Click);
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.mostrarToolStripMenuItem_Click);
             // 
             // FrmPpal
             // 
