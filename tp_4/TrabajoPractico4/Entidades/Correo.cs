@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Correo
+    public class Correo : IMostrar<List<Paquete>>
     {
         private List<Thread> mockPaquetes;
         private List<Paquete> paquetes;
@@ -28,6 +28,7 @@ namespace Entidades
         public Correo()
         {
             this.Paquetes = new List<Paquete>();
+            this.mockPaquetes = new List<Thread>();
         }
 
         public void FinEntregas()
@@ -41,9 +42,9 @@ namespace Entidades
         public string MostrarDatos(IMostrar<List<Paquete>> elementos)
         {
             StringBuilder sb = new StringBuilder();
-            foreach (Paquete p in (List<Paquete>)elementos)
+            foreach (Paquete p in ((Correo)elementos).Paquetes)
             {
-                sb.AppendLine(p.MostrarDatos(p));
+                sb.AppendLine($"{p} {p.Estado}");
             }
             return sb.ToString();
         }

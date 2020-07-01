@@ -20,16 +20,6 @@ namespace FrmPpal
             InitializeComponent();
         }
 
-        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripContainer1_TopToolStripPanel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             Paquete p = new Paquete(this.mtxtTrackingID.Text, this.txtDireccion.Text);
@@ -49,7 +39,7 @@ namespace FrmPpal
 
         private void btnMostrar_Click(object sender, EventArgs e)
         {
-
+            this.MostrarInformacion<List<Paquete>>((IMostrar<List<Paquete>>)correo);
         }
 
         private void FrmPpal_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,12 +67,35 @@ namespace FrmPpal
 
         private void ActualizarEstados()
         {
+            this.lstEstadoIngresado.Items.Clear();
+            this.lstEstadoEnViaje.Items.Clear();
+            this.lstEstadoEntregado.Items.Clear();
 
+            foreach (Paquete paq in this.correo.Paquetes)
+            {
+                switch (paq.Estado)
+                {
+                    case Paquete.EEstado.Ingresado:
+                        this.lstEstadoIngresado.Items.Add(paq);
+                        break;
+                    case Paquete.EEstado.EnViaje:
+                        this.lstEstadoEnViaje.Items.Add(paq);
+                        break;
+                    case Paquete.EEstado.Entregado:
+                        this.lstEstadoEntregado.Items.Add(paq);
+                        break;
+                }
+            }
         }
 
         private void MostrarInformacion<T>(IMostrar<T> elemento)
         {
-            this.MostrarInformacion<List<Paquete>>((IMostrar<List<Paquete>>)correo);
+            if (elemento != null)
+            {
+                rtbMostrar.Text = elemento.MostrarDatos(elemento);
+                rtbMostrar.Text.Guardar("salida.txt");
+            }
+        
         }
 
     }

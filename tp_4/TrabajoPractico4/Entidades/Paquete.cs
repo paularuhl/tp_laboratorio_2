@@ -137,6 +137,10 @@ namespace Entidades
         /// </summary>
         public static bool operator ==(Paquete p1, Paquete p2)
         {
+            if(p1 is null || p2 is null)
+            {
+                return false;
+            }
             return p1.TrackingID == p2.TrackingID;
         }
         /// <summary>
