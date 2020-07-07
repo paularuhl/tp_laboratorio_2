@@ -24,7 +24,7 @@ namespace Entidades
         private string trackingID;
         #endregion
 
-        #region Delegados y Estados
+        #region Delegados y Eventos
         /// <summary>
         /// Delegado que manejará metodos que informan los cambios de estado del paquete.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Entidades
         /// <param name="e"></param>
         public delegate void DelegadoEstado(object sender, EventArgs e);
         /// <summary>
-        /// Delegado que manejará metodos que informan los cambios de estado del paquete.
+        /// Delegado que manejará metodos que informan excepciones.
         /// </summary>
         /// <param name="e"></param>
         public delegate void DelegadoException(Exception e);
@@ -40,11 +40,11 @@ namespace Entidades
         /// <summary>
         /// Evento encargado de informar cambios de estado del paquete
         /// </summary>
-        public DelegadoEstado InformaEstado;
+        public event DelegadoEstado InformaEstado;
         /// <summary>
         /// Evento encargado de informar excepciones del paquete
         /// </summary>
-        public DelegadoException InformaException;
+        public event DelegadoException InformaException;
 
         #endregion
 
